@@ -40,6 +40,8 @@ int main() {
     printf("%d\n", class.stu_arr[0].age);
     print_stu(s2);
     print_stu2(&s2);
+
+    printf("%ld\n", sizeof(Class));
     
     return 0;
 }
