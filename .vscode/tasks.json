@@ -7,7 +7,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "quicksort.c",
+                "odd_even.c",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

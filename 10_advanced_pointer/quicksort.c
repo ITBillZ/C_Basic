@@ -32,6 +32,9 @@ int patition(void* base,
              int r) {
     // 转换成char*，才知道加减多少个字节
     char* pivot = (char*)base + r * width;
+    int ran = rand() % (r - l + 1) + l;
+    swap(pivot, (char*)base + ran * width, width);
+
     char* ai;
     char* aj;
     int i = l;

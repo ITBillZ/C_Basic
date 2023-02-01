@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 // 本平台是64位，地址为8个字节
 int main() {
@@ -65,8 +66,8 @@ int main() {
     printf("%ld\n", sizeof(&p + 1));     // 8
     printf("%ld\n", sizeof(&p[0] + 1));  // 8
     // ？？？
-    // printf("%p\n", &p);
-    // printf("%p\n", &p + 1);
+    printf("%p\n", &p);
+    printf("%p\n", &p + 1);
     printf("--------------------\n");
 
     printf("%ld\n", strlen(p));      // 6
@@ -76,6 +77,24 @@ int main() {
     printf("%ld\n", strlen(&p));         // 随机
     printf("%ld\n", strlen(&p + 1));     // 随机
     printf("%ld\n", strlen(&p[0] + 1));  // 5
+
+    printf("--------------------\n");
+
+    int a1[3][4] = {0};
+    printf("%ld\n", sizeof(a1));//48
+    printf("%ld\n", sizeof(a1[0][0]));//int类型 4
+    printf("%ld\n", sizeof(a1[0])); // a1[0]是第一行数组的数组名，sizeof(数组名)=数组大小 int[4] 16
+    printf("%ld\n", sizeof(a1[0] + 1)); // a1[0][1]地址 8 这里没有&a1[0]，所以+1并不会跳到第二行，而是下一个元素
+    printf("%ld\n", sizeof(*(a1[0] + 1))); //a1[0][1] int类型 4
+    //把二维数组看成一维，a1是首元素的地址，也就是第一行的地址，a1+1是第二行数组的地址 8
+    printf("%ld\n", sizeof(a1 + 1)); 
+    printf("%ld\n", sizeof(*(a1 + 1)));//a1[1] 第二行数组地址解引用，是数组 16
+    printf("%ld\n", sizeof(&a1[0] + 1));// 不是单独放sizeof里，是地址 8
+    printf("%ld\n", sizeof(*(&a1[0] + 1)));
+    printf("%ld\n", sizeof(*a1));
+    printf("%ld\n", sizeof(a1[3]));
+
+    printf("%p\n", a1[0]);
 
     return 0;
 }
